@@ -1,0 +1,10 @@
+# Default owner for everything in this repo.
+*       @isecu33
+
+# Area owners (add teammates as the team grows).
+/agents/    @isecu33
+/rules/     @isecu33
+/commands/  @isecu33
+/hooks/     @isecu33
+/scripts/   @isecu33
+/.github/   @isecu33
