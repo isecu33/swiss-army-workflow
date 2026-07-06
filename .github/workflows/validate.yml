@@ -1,0 +1,53 @@
+name: Validate toolkit
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: JSON files parse
+        run: |
+          set -e
+          for f in settings.template.json mcp-configs/.mcp.json.template; do
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" && echo "ok  $f"
+          done
+
+      - name: Agents have required frontmatter
+        run: |
+          set -e
+          fail=0
+          for f in agents/*.md; do
+            head -8 "$f" | grep -q '^name:' && head -8 "$f" | grep -q '^description:' \
+              || { echo "missing frontmatter: $f"; fail=1; }
+          done
+          [ "$fail" = 0 ] && echo "all agents ok"
+          exit $fail
+
+      - name: Commands have a description
+        run: |
+          set -e
+          fail=0
+          for f in commands/*.md; do
+            head -3 "$f" | grep -q '^description:' || { echo "missing description: $f"; fail=1; }
+          done
+          [ "$fail" = 0 ] && echo "all commands ok"
+          exit $fail
+
+      - name: Hooks run and exit cleanly
+        run: |
+          set -e
+          echo '{}' | node scripts/cost-tracker.js && echo "cost-tracker ok"
+          echo '{}' | node scripts/session-save.js && echo "session-save ok"
+
+      - name: Installer dry-run
+        run: bash install.sh --dry-run
