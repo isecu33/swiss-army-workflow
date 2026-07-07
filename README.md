@@ -47,6 +47,20 @@ Como se instala con symlinks, propagar cambios es:
 cd ~/team-claude && git pull      # y re-ejecuta ./install.sh si cambió settings/hooks
 ```
 
+## Instalación como plugin (alternativa moderna)
+
+Además del instalador por symlink, el repo está empaquetado como plugin de
+Claude Code, el mecanismo canónico para compartir setups en equipo (versionado
+y con updates de un comando):
+
+```
+/plugin marketplace add isecu33/swiss-army-workflow
+/plugin install swiss-army-workflow
+```
+
+Comprueba lo instalado con `/plugin list`. Elige **una** vía (symlink *o*
+plugin) para no duplicar agents/commands. Ver `docs/ROADMAP.md`.
+
 ## Estructura
 
 ```

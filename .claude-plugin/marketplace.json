@@ -1,0 +1,29 @@
+{
+  "name": "swiss-army-workflow",
+  "owner": {
+    "name": "isecu33",
+    "email": "iker.seoane.contact@gmail.com"
+  },
+  "metadata": {
+    "description": "Team-wide Claude Code workflow: subagents, rules, parallel commands and token-cost hooks."
+  },
+  "plugins": [
+    {
+      "name": "swiss-army-workflow",
+      "source": "./",
+      "description": "Curated subagents, per-language rules, parallel-orchestration commands (/parallel-tasks, /parallel-review), token-cost hooks and installer for Python, TS/Node, React/Next and Java/Spring teams.",
+      "version": "1.0.0",
+      "author": {
+        "name": "isecu33",
+        "email": "iker.seoane.contact@gmail.com"
+      },
+      "homepage": "https://github.com/isecu33/swiss-army-workflow",
+      "repository": "https://github.com/isecu33/swiss-army-workflow",
+      "license": "MIT",
+      "keywords": ["agents", "rules", "commands", "hooks", "tdd", "code-review", "parallel", "token-economy"],
+      "category": "workflow",
+      "tags": ["agents", "rules", "commands", "hooks", "parallel", "token-economy"],
+      "strict": false
+    }
+  ]
+}

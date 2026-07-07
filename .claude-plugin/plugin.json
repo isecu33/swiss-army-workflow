@@ -1,0 +1,29 @@
+{
+  "name": "swiss-army-workflow",
+  "version": "1.0.0",
+  "description": "Team-wide Claude Code setup: curated subagents, per-language rules, parallel-orchestration commands, and token-cost hooks for Python, TS/Node, React/Next and Java/Spring.",
+  "author": {
+    "name": "isecu33",
+    "url": "https://github.com/isecu33"
+  },
+  "homepage": "https://github.com/isecu33/swiss-army-workflow",
+  "repository": "https://github.com/isecu33/swiss-army-workflow",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "agents",
+    "rules",
+    "commands",
+    "hooks",
+    "tdd",
+    "code-review",
+    "parallel",
+    "token-economy",
+    "workflow"
+  ],
+  "mcpServers": {},
+  "commands": ["./commands/"],
+  "agents": ["./agents/"],
+  "skills": ["./skills/"],
+  "hooks": ["./hooks/"]
+}
