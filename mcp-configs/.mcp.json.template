@@ -1,5 +1,5 @@
 {
-  "_comment": "Plantilla de servidores MCP del equipo. Copia lo que uséis a ~/.claude/settings.json (clave mcpServers) o a .mcp.json del proyecto. Rellena los valores {{...}} con secretos LOCALES; NO comitees credenciales reales.",
+  "_comment": "Plantilla de servidores MCP del equipo. Copia lo que useis a ~/.claude/settings.json (clave mcpServers) o a .mcp.json del proyecto. Rellena los valores {{...}} con secretos LOCALES; NO comitees credenciales reales. A diferencia de los plugins (solo Claude Code), un servidor MCP tambien puede anadirse como conector en la app de Claude (web/desktop).",
   "mcpServers": {
     "github": {
       "command": "npx",
@@ -13,6 +13,11 @@
     "postgres": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-postgres", "{{DATABASE_URL}}"]
+    },
+    "memory": {
+      "_note": "Memoria a largo plazo (grafo de conocimiento) local. Funciona en Claude Code Y como conector en la app de Claude. Opcion ligera y sin credenciales; alternativa cross-app a claude-mem.",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
     }
   }
 }
