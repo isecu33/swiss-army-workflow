@@ -53,9 +53,13 @@ if (Test-Path $template) {
   elseif (Test-Path $target) {
     $cur = Get-Content $target -Raw | ConvertFrom-Json
     $add = $rendered | ConvertFrom-Json
-    $cur | Add-Member -NotePropertyName hooks -NotePropertyValue $add.hooks -Force
+    foreach ($k in 'hooks','extraKnownMarketplaces','enabledPlugins') {
+      if ($add.PSObject.Properties.Name -contains $k) {
+        $cur | Add-Member -NotePropertyName $k -NotePropertyValue $add.$k -Force
+      }
+    }
     ($cur | ConvertTo-Json -Depth 20) | Set-Content $target
-    Log "settings.json mergeado (hooks)"
+    Log "settings.json mergeado (hooks + plugins)"
   } else { $rendered | Set-Content $target; Log "settings.json escrito" }
 }
 

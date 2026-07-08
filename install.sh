@@ -74,7 +74,9 @@ if [ -f "$TEMPLATE" ]; then
       const targetPath=process.argv[1], renderedFile=process.argv[2];
       let cur={}; try{cur=JSON.parse(fs.readFileSync(targetPath,"utf8"))}catch{}
       const add=JSON.parse(fs.readFileSync(renderedFile,"utf8"));
-      cur.hooks=Object.assign({}, cur.hooks, add.hooks);
+      ["hooks","extraKnownMarketplaces","enabledPlugins"].forEach(function(k){
+        if(add[k]) cur[k]=Object.assign({}, cur[k], add[k]);
+      });
       if(add["$schema"]&&!cur["$schema"]) cur["$schema"]=add["$schema"];
       fs.writeFileSync(targetPath, JSON.stringify(cur,null,2)+"\n");
     ' "$TARGET" "$RENDERED_FILE"
@@ -86,4 +88,5 @@ if [ -f "$TEMPLATE" ]; then
   rm -f "$RENDERED_FILE"
 fi
 
-log "Listo. Reinicia Claude Code para carg
+log "Listo. Reinicia Claude Code para cargar hooks y comandos."
+log "Comprueba: /cost-report, /parallel-tasks, /parallel-review, /model-route"

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "_comment": "Plantilla del equipo. install.sh/install.ps1 sustituye {{CLAUDE_DIR}} por la ruta real de ~/.claude y escribe/mergea ~/.claude/settings.json.",
+  "_comment": "Plantilla del equipo. install.sh/install.ps1 sustituye {{CLAUDE_DIR}} por la ruta real de ~/.claude y mergea hooks, extraKnownMarketplaces y enabledPlugins en ~/.claude/settings.json sin borrar tu config previa.",
   "hooks": {
     "Stop": [
       {
@@ -19,5 +19,19 @@
         ]
       }
     ]
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-plugins": {
+      "source": { "source": "github", "repo": "anthropics/claude-code" }
+    },
+    "superpowers-marketplace": {
+      "source": { "source": "github", "repo": "obra/superpowers-marketplace" }
+    }
+  },
+  "enabledPlugins": {
+    "security-guidance@claude-code-plugins": true,
+    "commit-commands@claude-code-plugins": true,
+    "plugin-dev@claude-code-plugins": true,
+    "frontend-design@claude-code-plugins": true
   }
 }
